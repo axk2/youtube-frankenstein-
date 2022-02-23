@@ -1,19 +1,22 @@
 import { memo, useEffect, useState } from "react"
 import css from 'styled-jsx/css'
 import axios from "axios"
+import Card from './Card'
 
 
 const Container = css`
 .Container {
     width: 100%;
-    padding: 10px 90px;
+    padding: 10px 20px;
     background-color: #f9f9f9;
+    display: flex;
+    flex-wrap: wrap;
 }
 `
 
 
-export default memo(({id}) => {
-    const [Video, setVideo] = useState({})
+export default memo(() => {
+    const [Data, setData] = useState([])
 
 
     useEffect(() => {
@@ -31,8 +34,25 @@ export default memo(({id}) => {
         <div className="Container">
             <style jsx>{Container}</style>
 
-
-
+            
+            {Data.map(({
+                id,
+                title,
+                price,
+                description,
+                category,
+                image,
+                rating
+            }) => {
+                return (
+                    <Card 
+                        key={id}
+                        title={title}
+                        image={image}
+                        rating={rating}
+                    />
+                )
+            })}
         </div>
     )
 })

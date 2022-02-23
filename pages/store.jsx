@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react"
+import { memo } from "react"
 import Header from "../components/Header"
 import css from 'styled-jsx/css'
 import Sidebar from '../components/Sidebar'
@@ -21,7 +21,7 @@ export default memo(() => {
             
             <div className="APP">
                 <Sidebar />
-                {/* <RecommendedVideos /> */}
+                <Store />
             </div>
         </div>
     )
