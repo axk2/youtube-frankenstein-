@@ -2,6 +2,7 @@ import Link from "next/link"
 import css from "styled-jsx/css"
 import VideoCard from "./VideoCard"
 import { VideoApi } from '../../data/videos'
+import { useSelector } from "react-redux"
 
 
 const Videos = css`
@@ -28,13 +29,24 @@ const Lista = css`
 `
 
 
+const Dark = css`
+.dark {
+    background-color: #181818 !important;
+    color: white !important;
+}
+`
+
+
 export default function RecommendedVideos() {
+    const { theme } = useSelector((state) => state.themeReducer)
 
 
     return (
-        <div className="Videos">
+        <div className={`Videos ${theme && "dark"}`}>
             <style jsx>{Videos}</style>
             <style jsx>{Lista}</style>
+            <style jsx>{Dark}</style>
+
             
             <h2>Recommended</h2>
             <div className="Lista">

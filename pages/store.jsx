@@ -1,28 +1,10 @@
 import { memo } from "react"
-import Header from "../components/Header"
-import css from 'styled-jsx/css'
-import Sidebar from '../components/Sidebar'
 import Store from "../screens/store"
+import Layout from '../layouts/Layout'
 
 
-const App = css`
-.APP {
-    display: flex;
-}
-`
-
-
-export default memo(() => {
-    return (
-        <div>
-            <style jsx>{App}</style>
-
-            <Header />
-            
-            <div className="APP">
-                <Sidebar />
-                <Store />
-            </div>
-        </div>
-    )
-})
+export default memo(() => (
+    <Layout>
+        <Store />
+    </Layout>
+))

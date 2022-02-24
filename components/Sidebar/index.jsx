@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useSelector } from "react-redux"
 import css from 'styled-jsx/css'
 import SidebarItem from './SidebarItem'
 import { 
@@ -34,21 +35,36 @@ a {
 `
 
 
+const Dark = css`
+.dark {
+    background-color: rgba(33, 33, 33, 0.98)!important;
+    color: white !important;
+}
+
+.dark-text {
+    color: white;
+}
+`
+
+
 export default function Sidebar() {
+    const { theme } = useSelector((state) => state.themeReducer)
 
 
     return (
-        <div className='Sidebar'>
+        <div className={`Sidebar ${theme && "dark"}`}>
             <style jsx>{Sideb}</style>
+            <style jsx>{Dark}</style>
             
+
             <Link href="/">
-                <a>
+                <a className={theme && "dark-text"}>
                     <SidebarItem title="Home" Icon={Home} />
                 </a>
             </Link>
 
             <Link href="/store">
-                <a>
+                <a className={theme && "dark-text"}>
                     <SidebarItem title="Store" Icon={Whatshot} />
                 </a>
             </Link>

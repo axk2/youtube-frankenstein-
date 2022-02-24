@@ -1,16 +1,7 @@
 import { memo } from "react"
 import { useRouter } from 'next/router'
-import Header from "../../../components/Header"
-import css from 'styled-jsx/css'
-import Sidebar from '../../../components/Sidebar'
 import Video from '../../../screens/video'
-
-
-const App = css`
-.APP {
-    display: flex;
-}
-`
+import Layout from '../../layouts/Layout'
 
 
 export default memo(() => {
@@ -19,15 +10,8 @@ export default memo(() => {
 
 
     return (
-        <div>
-            <style jsx>{App}</style>
-
-            <Header />
-            
-            <div className="APP">
-                <Sidebar />
-                <Video id={id} />
-            </div>
-        </div>
+        <Layout>
+            <Video id={id} />
+        </Layout>
     )
 })

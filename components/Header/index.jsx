@@ -1,11 +1,16 @@
+import { useSelector, useDispatch } from "react-redux"
 import Link from "next/link"
+import css from "styled-jsx/css"
 import Avatar from '@material-ui/core/Avatar'
+import { ThemeDark, ThemeLight } from '../../state/theme/actions'
 import { 
     Search, 
     Menu,
     VideoCall,
     Apps,
-    Notifications
+    Notifications,
+    WbSunny,
+    NightsStay
 } from "@material-ui/icons"
 import {
     Icons,
@@ -16,16 +21,53 @@ import {
 } from './styles'
 
 
+const Light = css`
+.N-Light {
+    background-color: white;
+}
+
+.SRCH-Light {
+    background-color: #fafafa;
+    color: gray;
+}
+`
+
+
+const Dark = css`
+.N-Dark {
+    background-color: rgba(33, 33, 33, 0.98);
+    color: white;
+}
+
+.SRCH-Dark {
+    background-color: hsl(0, 0%, 18.82%);
+    color: gray;
+}
+
+.i-d {
+    background: #121212;
+}
+
+.i-d input {
+    background: #121212;
+}
+`
+
+
 export default function Header() {
+    const dispatch = useDispatch()
+    const { theme } = useSelector((state) => state.themeReducer)
 
 
     return (
-        <div className='Navbar'>
+        <div className={`Navbar ${theme ? "N-Dark" : "N-Light"}`}>
             <style jsx>{Navbar}</style>
             <style jsx>{Logo}</style>
             <style jsx>{Left}</style>
             <style jsx>{Input}</style>
             <style jsx>{Icons}</style>
+            <style jsx>{Dark}</style>
+            <style jsx>{Light}</style>
 
 
             <div className="Left">
@@ -37,14 +79,23 @@ export default function Header() {
                 </Link>
             </div>
 
-            <div className="Input">
+            <div className={`Input ${theme && "i-d"}`}>
                 <input type="text" />
-                <div className='SearchIcon'>
+                <div className={`SearchIcon ${theme ? "SRCH-Dark" : "SRCH-Light"}`}>
                     <Search  />
                 </div>
             </div>
 
             <div className="Icons">
+                {theme ? (
+                    <WbSunny 
+                        onClick={() => dispatch(ThemeLight())}
+                    />
+                ) : (
+                    <NightsStay 
+                        onClick={() => dispatch(ThemeDark())}
+                    />
+                )}
                 <VideoCall />
                 <Apps />
                 <Notifications />

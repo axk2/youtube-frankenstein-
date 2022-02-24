@@ -1,8 +1,9 @@
 import Avatar from '@material-ui/core/Avatar'
 import css from "styled-jsx/css"
+import { useSelector } from "react-redux"
 
 
-const Card = css`
+export const Card = css`
 .Card {
     margin-bottom: 40px;
     width: 270px;
@@ -47,6 +48,13 @@ const VideoInfo = css`
 `
 
 
+const Dark = css`
+.dark h4 {
+    color: white !important;
+}
+`
+
+
 const VideoCard = (props) => {
     const {
         image,
@@ -58,11 +66,15 @@ const VideoCard = (props) => {
     } = props
 
 
+    const { theme } = useSelector((state) => state.themeReducer)
+
+
     return (
-        <div className='Card'>
+        <div className={`Card ${theme && "dark"}`}>
             <style jsx>{Card}</style>
             <style jsx>{Portada}</style>
             <style jsx>{VideoInfo}</style>
+            <style jsx>{Dark}</style>
 
 
             <img className='Portada' src={image} alt="portada" />

@@ -11,7 +11,6 @@ export const Navbar = css`
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: white;
 }
 `
 
@@ -53,12 +52,10 @@ export const Input = css`
 
 .Input .SearchIcon {
     width: 50px !important;
-    background-color: #fafafa;
     border-left: 1px solid lightgray;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: gray;
 }
 `
 

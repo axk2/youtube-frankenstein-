@@ -23,12 +23,12 @@ export default memo(() => {
         const LlamarApi = async () => {
             const data = await axios.get("https://fakestoreapi.com/products")
             setData(data.data)
+            console.log(data.data)
+            console.table(data.data)
         }
         LlamarApi()
     }, [])
 
-    console.log(Data)
-    console.table(Data)
 
     return (
         <div className="Container">
